@@ -215,7 +215,24 @@
                         </div><!-- container -->
                     </div> <!-- Page content Wrapper -->
                 </div> <!-- content -->
+                <h1>Inventory</h1>
+                <ul>
+                    <h1>Product List</h1>
 
+                    <ul>
+                    {% for product in products %}
+                      <li>{{ product.name }} - ${{ product.price }} - {{ product.created_at }}</li>
+                      <a href="{% url 'subtract_product' product.id %}">Delete</a>
+
+                        {% empty %}
+
+                        <li>No products found.</li>
+                      {% endfor %}
+                      </ul>                    
+                </ul>
+                <a href="{% url 'add_product' %}">Add Product</a>
+                <a href="{% url 'subtract_product' %}">Subtract Product</a>
+                
                 <footer class="footer">
                     © 2023 MySklad by CIPHER-EDU.
                 </footer>
