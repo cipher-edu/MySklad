@@ -1,0 +1,97 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignUp in MySklad</title>
+    <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}">
+
+    <link href="{% static 'assets/plugins/jvectormap/jquery-jvectormap-2.0.2.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/plugins/fullcalendar/vanillaCalendar.css' %}" rel="stylesheet" type="text/css"  />
+    
+    <link href="{% static 'assets/plugins/morris/morris.css' %}" rel="stylesheet">
+
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/icons.css' %}" rel="stylesheet" type="text/css">
+    <link href="{% static 'assets/css/style.css' %}" rel="stylesheet" type="text/css">
+</head>
+<body>
+    
+    <div class="accountbg"></div>
+    <div class="wrapper-page">
+
+        <div class="card">
+            <div class="card-body">
+
+                <div class="text-center">
+                    <a href="{% url 'home' %}" class="logo logo-admin"><h3>MySklad</h3></a>
+                </div>
+
+                <div class="p-3">
+                    <form class="form-horizontal" action="" method="post">
+                        {% csrf_token %}
+                        {% load widget_tweaks  %}
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <label class="control-label font-weight-normal" for="">Foydalanuvchining ismi</label>
+                               {{form.username|add_class:"form-control"}}
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <label class="control-label font-weight-normal" for="">Parolni kiriting</label>
+                                {{form.password1|add_class:"form-control"}}
+                            </div>
+                        </div>
+                        <div class="form-group row">
+                            <div class="col-12">
+                                <label class="control-label font-weight-normal" >Parolni tasdiqlang</label>
+                                {{form.password2|add_class:"form-control"}}
+                            </div>
+                        </div>
+                        <div class="form-group text-center row m-t-20">
+                            <div class="col-12">
+                                <button class="btn btn-danger btn-block waves-effect waves-light" type="submit">Register</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group m-t-10 mb-0 row">
+                            <div class="col-12 m-t-20 text-center">
+                                <a href="{% url 'login' %}" class="text-muted">Sizda acaunt mavjudmi?</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/js/popper.min.js' %}"></script>
+    <script src="{% static 'assets/js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'assets/js/modernizr.min.js' %}"></script>
+    <script src="{% static 'assets/js/detect.js' %}"></script>
+    <script src="{% static 'assets/js/fastclick.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.blockUI.js' %}"></script>
+    <script src="{% static 'assets/js/waves.js' %}"></script>
+    <script src="{% static 'assets/js/jquery.nicescroll.js' %}"></script>
+  
+    <script src="{% static 'assets/plugins/jvectormap/jquery-jvectormap-2.0.2.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js' %}"></script>
+    
+    <script src="{% static 'assets/plugins/skycons/skycons.min.js' %}"></script>
+    <script src="{% static 'assets/plugins/fullcalendar/vanillaCalendar.js' %}"></script>
+    
+    <script src="{% static 'assets/plugins/raphael/raphael-min.js' %}"></script>
+    <script src="{% static 'assets/plugins/morris/morris.min.js' %}"></script> 
+     
+    <script src="{% static 'assets/pages/dashborad.js' %}"></script>
+  
+    <!-- App js -->
+    <script src="{% static 'assets/js/app.js' %}"></script>
+</body>
+</html>
