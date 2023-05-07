@@ -215,24 +215,39 @@
                         </div><!-- container -->
                     </div> <!-- Page content Wrapper -->
                 </div> <!-- content -->
+
+                {% block content %}
                 <h1>Inventory</h1>
-                <ul>
-                    <h1>Product List</h1>
-
-                    <ul>
-                    {% for product in products %}
-                      <li>{{ product.name }} - ${{ product.price }} - {{ product.created_at }}</li>
-                      <a href="{% url 'subtract_product' product.id %}">Delete</a>
-
-                        {% empty %}
-
-                        <li>No products found.</li>
-                      {% endfor %}
-                      </ul>                    
-                </ul>
-                <a href="{% url 'add_product' %}">Add Product</a>
-                <a href="{% url 'subtract_product' %}">Subtract Product</a>
                 
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in products %}
+                        <tr>
+                            <td>{{ product.name }}</td>
+                            <td>{{ product.price }}</td>
+                            <td>{{ product.quantity }}</td>
+                            <td>
+                                <a href="{% url 'product_detail' product.id %}" class="btn btn-sm btn-outline-primary">View</a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+                
+                <div class="d-flex justify-content-end">
+                    <a href="{% url 'add_product' %}" class="btn btn-primary">Add Product</a>
+                    <a href="{% url 'subtract_product' %}" class="btn btn-danger ms-3">Subtract Product</a>
+                </div>
+                
+                {% endblock %}
                 <footer class="footer">
                     © 2023 MySklad by CIPHER-EDU.
                 </footer>

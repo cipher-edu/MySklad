@@ -1,0 +1,10 @@
+{% block content %}
+<h1>Add Product to Inventory</h1>
+
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button class="btn btn-primary">Add to Inventory</button>
+</form>
+
+{% endblock %}

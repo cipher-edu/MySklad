@@ -10,3 +10,26 @@ class NewUserform(UserCreationForm):
         model = User
         fields  = ("username",)
         field_classes = {'username':UsernameField}
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Product
+        fields = ['name', 'price', 'quantity']
+
+class AddProductForm(forms.ModelForm):
+    class Meta:
+        model = Transaction
+        fields = ['product', 'quantity']
+        widgets = {
+            'product': forms.Select(attrs={'class': 'form-control'}),
+            'quantity': forms.NumberInput(attrs={'class': 'form-control'}),
+        }
+
+class SubtractProductForm(forms.ModelForm):
+    class Meta:
+        model = Transaction
+        fields = ['product', 'quantity']
+        widgets = {
+            'product': forms.Select(attrs={'class': 'form-control'}),
+            'quantity': forms.NumberInput(attrs={'class': 'form-control'}),
+        }
