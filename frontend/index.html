@@ -186,8 +186,8 @@
                                                         </div>
                                                         <div class="col-9 align-self-center text-right">
                                                             <div class="m-l-10 ">
-                                                                <h5 class="mt-0">7514</h5>
-                                                                <p class="mb-0 text-muted">New Orders</p>
+                                                                <h5 class="mt-0"> {{total_value_quantity}}</h5>
+                                                                <p class="mb-0 text-muted">Barcha maxsulotlar</p>
                                                             </div>
                                                         </div>                                                                
                                                     </div>
@@ -214,11 +214,12 @@
                             </div><!--end row-->
                         </div><!-- container -->
                     </div> <!-- Page content Wrapper -->
-                </div> <!-- content -->
+                 <!-- content -->
 
                 {% block content %}
                 <h1>Inventory</h1>
-                
+                <p>Total value of inventory: {{ total_value_price }}</p>
+                <p>Total vlaue of inventory: {{total_value_quantity}} </p>
                 <table class="table">
                     <thead>
                         <tr>
@@ -247,7 +248,7 @@
                     <a href="{% url 'subtract_product' %}" class="btn btn-danger ms-3">Subtract Product</a>
                 </div>
                 
-                {% endblock %}
+                {% endblock %}</div>
                 <footer class="footer">
                     © 2023 MySklad by CIPHER-EDU.
                 </footer>

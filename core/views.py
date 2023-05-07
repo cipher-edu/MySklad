@@ -13,7 +13,14 @@ class SingupView(CreateView):
 
 def index(request):
     products = Product.objects.all()
-    return render(request, 'index.html', {'products': products})
+    total_value_price = sum(product.price for product in products)
+    total_value_quantity = sum(product.quantity for product in products)
+    context = {
+        'products':products,
+        'total_value_price':total_value_price,
+        'total_value_quantity':total_value_quantity
+    }
+    return render(request, 'index.html', context)
 
 def add_product(request):
     if request.method == 'POST':
