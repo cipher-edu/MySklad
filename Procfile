@@ -1,1 +1,1 @@
-web: gunicorn cipher.wsgi --log-file - 
+web: gunicorn myproject.wsgi
