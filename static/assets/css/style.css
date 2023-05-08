@@ -1,10 +1,4 @@
 /*
-Template Name: Zoter - Bootstrap 4 Admin Dashboard
-Author: Mannatthemes
-Website: www.mannatthemes.com
-File: Main Css File
-*/
-/*
 1. General
 2. Loader
 3. Bootstrap Custom
@@ -2477,7 +2471,7 @@ File: Menu
 }
 
 .navbar-custom {
-  background-color: #283179;
+  background-color:transparent;
   border: none;
   margin: -20px -25px 0 -25px;
   -webkit-box-shadow: 1px 0px 20px rgba(0, 0, 0, 0.2);

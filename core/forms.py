@@ -14,7 +14,7 @@ class NewUserform(UserCreationForm):
 class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
-        fields = ['name', 'price', 'quantity']
+        fields = '__all__'
 
 class AddProductForm(forms.ModelForm):
     class Meta:

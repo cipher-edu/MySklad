@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
         <title>MySklad - Responsive Admin Dashboard</title>
         <meta content="Admin Dashboard" name="description" />
-        <meta content="Mannatthemes" name="author" />
+        <meta content="MySklad" name="author" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
         <link rel="shortcut icon" href="{% static 'assets/images/favicon.ico' %}">
@@ -25,84 +25,32 @@
 
 
     <body class="fixed-left">
-
-        <!-- Loader -->
         <div id="preloader"><div id="status"><div class="spinner"></div></div></div>
-
-        <!-- Begin page -->
         <div id="wrapper">
-
-            <!-- ========== Left Sidebar Start ========== -->
            {% include 'base/navbar.html' %}
-            <!-- Left Sidebar End -->
-
-            <!-- Start right Content here -->
-
             <div class="content-page" >
-                <!-- Start content -->
                 <div class="content" >
-
-                    <!-- Top Bar Start -->
                     <div class="topbar" >
-
-                        <nav class="navbar-custom">
-
-                            <ul class="list-inline float-right mb-0">
-                                <!-- language-->
+                        <nav class="navbar-custom " >
+                            <ul class="list-inline float-left " style="padding: 2px;">
                                 <li class="list-inline-item hide-phone app-search">
                                     <form role="search" class="">
                                         <input type="text" placeholder="Search..." class="form-control">
                                         <a href=""><i class="fa fa-search"></i></a>
                                     </form>
                                 </li>
-                                <li class="list-inline-item dropdown notification-list hide-phone">
-                                    <!-- <a class="nav-link dropdown-toggle arrow-none waves-effect text-white" data-toggle="dropdown" href="#" role="button"
-                                        aria-haspopup="false" aria-expanded="false">
-                                        <img src="assets/images/flags/us_flag.jpg" class="ml-2" height="16" alt=""/>
-                                    </a> -->
-                                </li>
+                           
                                 {% if request.user.is_authenticated %}
                                 <a href="{% url 'login' %}" class="badge badge-primary" style="font-size: 16px;">
                                     {{request.user.username}}
                                 </a>
                                 {% else %}
-                                <a href="{% url 'login' %}" class="badge badge-success" style="font-size: 16px;">Login</a>
+                                <a href="{% url 'login' %}" ><i class="mdi mdi-key " >Login</i></a>
                                 {% endif %}
-                                <a href="{% url 'logout' %}" class="badge badge-reset" style="font-size: 16px;">Logout</a>
-                            
-                                <!-- <li class="list-inline-item dropdown notification-list">
-                                    <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button"
-                                       aria-haspopup="false" aria-expanded="false">
-                                        <img src="assets/images/users/avatar-1.jpg" alt="user" class="rounded-circle">
-                                    </a>
-                                    <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                                       
-                                        <div class="dropdown-item noti-title">
-                                            <h5>Welcome</h5>
-                                        </div>
-                                        <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle m-r-5 text-muted"></i> Profile</a>
-                                        <a class="dropdown-item" href="#"><i class="mdi mdi-wallet m-r-5 text-muted"></i> My Wallet</a>
-                                        <a class="dropdown-item" href="#"><span class="badge badge-success float-right">5</span><i class="mdi mdi-settings m-r-5 text-muted"></i> Settings</a>
-                                        <a class="dropdown-item" href="#"><i class="mdi mdi-lock-open-outline m-r-5 text-muted"></i> Lock screen</a>
-                                        <div class="dropdown-divider"></div>
-                                        <a class="dropdown-item" href="#"><i class="mdi mdi-logout m-r-5 text-muted"></i> Logout</a>
-                                    </div>
-                                </li> -->
-
+                                <a href="{% url 'logout' %}" > <i class="mdi mdi-logout-variant "> Logout</i></a>
                             </ul>
-
-                            <ul class="list-inline menu-left mb-0">
-                                <li class="float-left">
-                                    <button class="button-menu-mobile open-left waves-light waves-effect">
-                                        <i class="mdi mdi-menu"></i>
-                                    </button>
-                                </li>                                
-                            </ul>
-
-                            <div class="clearfix" style="height: 71px !important;"></div>
-
+                            <div class="clearfix"></div>
                         </nav>
-
                     </div>
                     <!-- Top Bar End -->
 

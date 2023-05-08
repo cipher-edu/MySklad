@@ -29,11 +29,11 @@
 </table>
 
 <div class="d-flex justify-content-end">
-    <a href="{% url 'add_product_to_inventory' %}?product_id={{ product.id }}" class="btn btn-primary">Add to Inventory</a>
-    <a href="{% url 'subtract_product' %}?product_id={{ product.id }}" class="btn btn-danger ms-3">Subtract from Inventory</a>
+    <a href="{% url 'add_product_to_inventory' %}?product_id={{ product.id }}" class="btn btn-primary">Tovarlarga krim qo'shish</a>
+    <a href="{% url 'subtract_product' %}?product_id={{ product.id }}" class="btn btn-danger ms-3">Tovarlarga chiqim qo'shish</a>
     <form method="POST" action="{% url 'delete_product' product.id %}" class="ms-3">
         {% csrf_token %}
-        <button type="submit" class="btn btn-warning">Delete Product</button>
+        <button type="submit" class="btn btn-warning">O'chirish</button>
     </form>
 
 </div>

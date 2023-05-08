@@ -2,7 +2,9 @@
 from django.shortcuts import render, redirect, get_object_or_404, reverse
 from django.forms import modelform_factory
 from .models import Product
+from django.contrib.auth.decorators import login_required
 from django.views.generic import CreateView
+
 from .forms import *
 # Create your views here.
 class SingupView(CreateView):
@@ -10,7 +12,7 @@ class SingupView(CreateView):
     form_class = NewUserform
     def get_success_url(self):
         return reverse('index')
-
+@login_required
 def index(request):
     products = Product.objects.all()
     total_value_price = sum(product.price for product in products)
@@ -23,6 +25,10 @@ def index(request):
     return render(request, 'index.html', context)
 
 def add_product(request):
+    products = Product.objects.all()
+    total_value_price = sum(product.price for product in products)
+    total_value_quantity = sum(product.quantity for product in products)
+    
     if request.method == 'POST':
         form = ProductForm(request.POST)
         if form.is_valid():
@@ -30,7 +36,12 @@ def add_product(request):
             return redirect('index')
     else:
         form = ProductForm()
-    context = {'form': form, 'action': 'Add'}
+    context = {
+        'form': form, 
+        'action': 'Add',
+        'total_value_price':total_value_price,
+        'total_value_quantity':total_value_quantity
+        }
     return render(request, 'add_subtract_product.html', context)
 
 def subtract_product(request):
