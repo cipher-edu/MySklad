@@ -166,24 +166,8 @@
              
     <form method="POST">
         {% csrf_token %}
-        {% load widget_tweaks %}
-        
-            <label for="" class="col-2 col-form-label">Tovar nomi</label>
-            {{form.name|add_class:"form-control col-3"|append_attr:"placeholder:Kartridj canon 404"}}
-        
-            <label for="" class="col-sm-2 col-form-label">Tovar narxi</label>
-            {{form.price|add_class:"form-control col-3"|append_attr:"placeholder:tavar narxi: 400000"}}
-        
-            <label for="" class="col-sm-2 col-form-label">Tovar qiyamti</label>
-            {{form.quantity|add_class:"form-control col-3"|append_attr:"placeholder:Tovar qiymati 40"}}
-        
-            <label for="" class="col-sm-2 col-form-label">Tovar brandi</label>
-            {{form.brand|add_class:"form-control col-3"|append_attr:"placeholder:Tavar brendi: Apple"}}
-        
-            <label for="" class="col-sm-2 col-form-label">Tovar rangi</label>
-            {{form.color|add_class:"form-control col-3"|append_attr:"placeholder:Tovar rangi: Qora"}}
-            <br><br>
-        <button class="btn btn-primary">Add to Inventory</button>
+        {{form.as_p}}
+        <button type="submit">\</button>
     </form>
         </div>
             <footer class="footer">
