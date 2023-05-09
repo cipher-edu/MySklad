@@ -81,6 +81,28 @@ def add_product_to_inventory(request):
     context = {'form': form}
     return render(request, 'add_product_to_inventory.html', context)
 
+def clientservice(request):
+    form = CerviseClientForm(request.POST)
+    if request.method == 'POST':
+        if form.is_valid():
+            transaction = form.save(commit=False)
+            transaction.added = True
+            transaction.product.quantity -= transaction.quantity
+            transaction.product.save()
+            transaction.save()
+            return redirect('index')
+    else:
+        form = CerviseClientForm()
+    context = {
+    }
+    return render(request, 'clientservice.html', context=context)
+
+def user_detail(request, user_id):
+    user = UserService.objects.get(id=user_id)
+    transactions = Transaction.objects.filter(user=user).order_by('-date')
+    context = {'user': user, 'transactions': transactions}
+    return render(request, 'clientdetail.html', context)
+
 def delete_product(request, product_id):
     product = get_object_or_404(Product, pk=product_id)
     if request.method == 'POST':

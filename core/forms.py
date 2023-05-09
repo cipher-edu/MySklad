@@ -25,6 +25,11 @@ class AddProductForm(forms.ModelForm):
             'quantity': forms.NumberInput(attrs={'class': 'form-control'}),
         }
 
+class CerviseClientForm(forms.ModelForm):
+    class Meta:
+        model = UserService
+        fields = '__all__'
+
 class SubtractProductForm(forms.ModelForm):
     class Meta:
         model = Transaction
