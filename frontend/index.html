@@ -195,8 +195,12 @@
                     <a href="{% url 'add_product' %}" class="btn btn-primary">Add Product</a>
                     <a href="{% url 'subtract_product' %}" class="btn btn-danger ms-3">Subtract Product</a>
                 </div>
-                
+             
                 {% endblock %}</div>
+
+                {% for u in user %}
+                <a href="">{{u.product}}</a>
+                {% endfor %}
                 <footer class="footer">
                     © 2023 MySklad by CIPHER-EDU.
                 </footer>

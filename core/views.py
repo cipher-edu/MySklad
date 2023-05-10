@@ -14,10 +14,12 @@ class SingupView(CreateView):
         return reverse('index')
 @login_required
 def index(request):
+    user = UserService.objects.all()
     products = Product.objects.all()
     total_value_price = sum(product.price for product in products)
     total_value_quantity = sum(product.quantity for product in products)
     context = {
+        'user':user,
         'products':products,
         'total_value_price':total_value_price,
         'total_value_quantity':total_value_quantity
@@ -97,8 +99,8 @@ def clientservice(request):
     }
     return render(request, 'clientservice.html', context=context)
 
-def user_detail(request, user_id):
-    user = UserService.objects.get(id=user_id)
+def user_detail(request, username_id):
+    user = UserService.objects.get(id=username_id)
     transactions = Transaction.objects.filter(user=user).order_by('-date')
     context = {'user': user, 'transactions': transactions}
     return render(request, 'clientdetail.html', context)

@@ -25,7 +25,7 @@ class Cash(models.Model):
 #         return self.worker_name
     
 class UserRegister(models.Model):
-    name = models.CharField(max_length=150, verbose_name='foydalanuvchining ismi')
+    username = models.CharField(max_length=150, verbose_name='foydalanuvchining ismi')
     number = models.IntegerField(verbose_name='Foydalanuvchinig telefon raqami')
     ovner = models.CharField(max_length=150, verbose_name='ishchi nomi')
     client_reception_time = models.DateField(auto_now=True)
@@ -62,7 +62,7 @@ class Product(models.Model):
         return self.name
     
 class UserService(models.Model):
-    name = models.ForeignKey( UserRegister, on_delete=models.CASCADE)
+    username = models.ForeignKey( UserRegister, on_delete=models.CASCADE)
     product = models.ForeignKey(Product, on_delete=models.CASCADE)
     quantity = models.IntegerField()
     added = models.BooleanField(default=False)
