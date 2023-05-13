@@ -20,7 +20,7 @@ from core.urls import SingupView
 from django.contrib.auth.views import LoginView, LogoutView
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('core.urls')), 
+    path('', include('skladik.urls')), 
     path('login/', LoginView.as_view(), name='login'),
     path('logout/', LogoutView.as_view(), name='logout'),
     path('signup/', SingupView.as_view(), name='signup'),
