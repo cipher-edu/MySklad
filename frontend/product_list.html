@@ -1,0 +1,27 @@
+<h1>Product List</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Product Name</th>
+      <th>Product Cost</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for product in products %}
+    <tr>
+      <td>{{ product.name }}</td>
+      <td>{{ product.cost }}</td>
+      <td>
+        <form method="post" action="{% url 'subtract_product' %}">
+          {% csrf_token %}
+          <input type="hidden" name="product_id" value="{{ product.id }}">
+          <label for="quantity_{{ product.id }}">Quantity:</label>
+          <input type="number" id="quantity_{{ product.id }}" name="quantity" min="1" value="1" required>
+          <input type="submit" value="Subtract">
+        </form>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

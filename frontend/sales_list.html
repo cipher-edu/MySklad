@@ -1,0 +1,21 @@
+<h1>Sales List</h1>
+<table>
+  <thead>
+    <tr>
+      <th>Product Name</th>
+      <th>Quantity</th>
+      <th>Partner Organization</th>
+      <th>Sold At</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for sale in sales %}
+    <tr>
+      <td>{{ sale.product.name }}</td>
+      <td>{{ sale.quantity }}</td>
+      <td>{{ sale.partner_organization }}</td>
+      <td>{{ sale.sold_at }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

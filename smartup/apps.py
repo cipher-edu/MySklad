@@ -1,6 +1,6 @@
 from django.apps import AppConfig
 
 
-class SkladikConfig(AppConfig):
+class SmartupConfig(AppConfig):
     default_auto_field = 'django.db.models.BigAutoField'
-    name = 'skladik'
+    name = 'smartup'
