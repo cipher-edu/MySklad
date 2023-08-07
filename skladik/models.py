@@ -15,7 +15,7 @@ class Cash(models.Model):
         return self.cash_value
 # add workers model
 
-class Ishchilar(models.Model):
+class Worker(models.Model):
     worker_name = models.CharField(max_length=45, verbose_name="Ismi")
     worker_surname = models.CharField(max_length=45, verbose_name="Familiya")
     worker_age = models.IntegerField(verbose_name="Yoshi")
@@ -42,7 +42,7 @@ class Items(models.Model):
     items_outprice = models.IntegerField(verbose_name="Sotilish narxi")
     items_value = models.IntegerField(verbose_name="Qiymati (dona)")
     items_color = models.CharField(max_length=50, verbose_name="Tovar rangi")
-    items_creator = models.ForeignKey(Ishchilar, on_delete=models.CASCADE, default=1, verbose_name="Maxsulot qo'shuvchi xodim")
+    items_creator = models.ForeignKey(Worker, on_delete=models.CASCADE, default=1, verbose_name="Maxsulot qo'shuvchi xodim")
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False) 
     class Meta:
         verbose_name = 'Mahsulot turlari'
@@ -67,7 +67,7 @@ class Organizationsservice(models.Model):
 class Clientadd(models.Model):
     client_name = models.CharField(max_length=50, unique=True)
     client_phonenumber = models.IntegerField(unique=True)
-    ovner = models.ForeignKey(Ishchilar, on_delete=models.CASCADE )
+    ovner = models.ForeignKey(Worker, on_delete=models.CASCADE )
     client_reception_time = models.DateField(auto_now=True)
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     class Meta:
@@ -112,7 +112,7 @@ class CerviseClient(models.Model):
     def detail(self):
         return reverse('client', kwargs={'client_id':self.pk})
 #mahsulotni topshirish
-class Endservice(models.Model):
+class EndserviceClient(models.Model):
     client_name = models.ForeignKey(Clientadd, on_delete=models.CASCADE, verbose_name="Mijozni tanlang")
     product = models.ForeignKey(CerviseClient, on_delete=models.CASCADE, verbose_name="Texnikani tanla")
     product_defective = models.CharField(max_length=150, verbose_name="Maxsulot aybi")
@@ -122,7 +122,7 @@ class Endservice(models.Model):
     sklad_item = models.ForeignKey(Items, on_delete=models.CASCADE, verbose_name="Sklad maxsulot")
     cervice_item_price = models.IntegerField(verbose_name="Ishlatilingan texnika narxi")
     clien_service_price = models.IntegerField(verbose_name="Service narxi")
-    topshiruvchi = models.ForeignKey(Ishchilar, on_delete=models.CASCADE, verbose_name='xizmatni yakunlvchi')
+    topshiruvchi = models.ForeignKey(Worker, on_delete=models.CASCADE, verbose_name='xizmatni yakunlvchi')
     coment = models.TextField(verbose_name="koment")
 
     class Meta:
