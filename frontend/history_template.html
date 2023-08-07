@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Product Histories</title>
+</head>
+<body>
+    <h1>Creation History</h1>
+    <ul>
+        {% for creator, count in creation_history.items %}
+            <li>{{ creator }}: {{ count }}</li>
+        {% endfor %}
+    </ul>
+
+    <h1>Output History</h1>
+    <ul>
+        {% for item_name, count in output_history.items %}
+            <li>{{ item_name }}: {{ count }}</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

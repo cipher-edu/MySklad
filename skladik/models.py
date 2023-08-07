@@ -42,7 +42,7 @@ class Items(models.Model):
     items_outprice = models.IntegerField(verbose_name="Sotilish narxi")
     items_value = models.IntegerField(verbose_name="Qiymati (dona)")
     items_color = models.CharField(max_length=50, verbose_name="Tovar rangi")
-    items_creator = models.ForeignKey(Worker, on_delete=models.CASCADE, default=1, verbose_name="Maxsulot qo'shuvchi xodim")
+    items_creator = models.CharField(max_length=50, verbose_name="Tovar krituvchi")
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False) 
     class Meta:
         verbose_name = 'Mahsulot turlari'

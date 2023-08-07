@@ -4,11 +4,9 @@ from .models import *
 admin.site.register(Cash)
 admin.site.register(Worker)
 class ItemsAdmin(admin.ModelAdmin):
-    list_display = ('id','items_brand','items_name','items_inprice','items_incash_value','items_outprice','items_value','items_color','items_creator',)
+    list_display = ('id','items_brand','items_name','items_inprice','items_incash_value','items_outprice','items_value','items_color',)
 admin.site.register(Items,ItemsAdmin)
 admin.site.register(Organizationsservice)
-
-
 class AddClient(admin.ModelAdmin):
     list_display = ('id','client_name','client_phonenumber','ovner', 'client_reception_time')
 admin.site.register(Clientadd,AddClient)
