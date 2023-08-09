@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Details</title>
+</head>
+<body>
+    <h1>Client Details: {{ client.client_name }}</h1>
+    <p><strong>Client Phone Number:</strong> {{ client.client_phonenumber }}</p>
+    <p><strong>Owner:</strong> {{ client.ovner }}</p>
+    <h2>Service History</h2>
+    <table>
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Product Value</th>
+                <th>Product Color</th>
+                <th>Service Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for service in service_history %}
+                <tr>
+                    <td>{{ service.product_name }}</td>
+                    <td>{{ service.product_value }}</td>
+                    <td>{{ service.product_color }}</td>
+                    <td>{{ service.service_catetegory }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <a href="{% url 'client_list' %}">Back to Client List</a>
+    <a href="{% url 'deliver_product' client.id %}">Deliver Product</a>
+    <a href="{% url 'end_service' client.id %}">End Service</a>
+    <a href="{% url 'client_history' client_id=client.id %}">View Client History</a>
+
+</body>
+</html>

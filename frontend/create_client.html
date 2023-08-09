@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Client</title>
+</head>
+<body>
+    <h1>Create New Client</h1>
+    <form method="post">
+        {% csrf_token %}
+        <label for="client_name">Client Name:</label>
+        <input type="text" id="client_name" name="client_name" required><br>
+        <label for="client_phonenumber">Phone Number:</label>
+        <input type="tel" id="client_phonenumber" name="client_phonenumber" required><br>
+        <label for="owner">Owner:</label>
+        <select id="owner" name="owner" required>
+            {% for owner in owners %}
+                <option value="{{ owner.id }}">{{ owner.worker_name }}</option>
+            {% endfor %}
+        </select><br>
+        <button type="submit">Create Client</button>
+    </form>
+    <a href="{% url 'client_list' %}">Back to Client List</a>
+</body>
+</html>

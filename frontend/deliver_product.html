@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Deliver Product</title>
+</head>
+<body>
+    <h1>Deliver Product for {{ client.client_name }}</h1>
+    
+    <form method="post">
+        {% csrf_token %}
+        <label for="product_name">Product Name:</label>
+        <input type="text" name="product_name" required><br>
+        
+        <label for="product_value">Product Value:</label>
+        <input type="number" name="product_value" required><br>
+        
+        <label for="product_color">Product Color:</label>
+        <input type="text" name="product_color" required><br>
+        
+        <label for="service_category">Service Category:</label>
+        <select name="service_category" required>
+            {% for service_category in service_categories %}
+                <option value="{{ service_category.pk }}">{{ service_category.service_catetegory }}</option>
+            {% endfor %}
+        </select><br>
+        
+        <input type="submit" value="Deliver Product">
+    </form>
+    
+    <a href="{% url 'client_history' client_id=client_id %}">Back to Client History</a>
+
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>End Service</title>
+</head>
+<body>
+    <h1>End Service for {{ client.client_name }}</h1>
+
+    <form method="post">
+        {% csrf_token %}
+        
+        <label for="product">Select Product:</label>
+        <select name="product_id" required>
+            {% for product in products %}
+                <option value="{{ product.pk }}">{{ product.items_name }}</option>
+            {% endfor %}
+        </select><br>      
+        
+        <label for="product_defective">Defects:</label>
+        <input type="text" name="product_defective" required><br>
+        
+        <label for="product_repaired">Repairs Done:</label>
+        <input type="text" name="product_repaired" required><br>
+        
+        <label for="product_not_repaired">Not Repaired:</label>
+        <input type="text" name="product_not_repaired" required><br>
+        
+        <label for="kuchadan_tovar">Where Product Was Taken From:</label>
+        <input type="text" name="kuchadan_tovar" required><br>
+        
+        <label for="sklad_item">Select Item from Warehouse:</label>
+        <select name="sklad_item" required>
+            {% for item in sklad_items %}
+                <option value="{{ item.pk }}">{{ item.items_name }}</option>
+            {% endfor %}
+        </select><br>
+        
+        <label for="cervice_item_price">Service Item Price:</label>
+        <input type="number" name="cervice_item_price" required><br>
+        
+        <label for="clien_service_price">Client Service Price:</label>
+        <input type="number" name="clien_service_price" required><br>
+        
+        <label for="topshiruvchi">Select Worker:</label>
+        <select name="topshiruvchi" required>
+            {% for worker in workers %}
+                <option value="{{ worker.pk }}">{{ worker.worker_name }}</option>
+            {% endfor %}
+        </select><br>
+        
+        <label for="coment">Comments:</label>
+        <textarea name="coment" rows="4" required></textarea><br>
+        
+        <button type="submit">End Service</button>
+    </form>
+    
+    <a href="{% url 'client_details' client.id %}">Back to Client Details</a>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Client List</title>
+</head>
+<body>
+    <h1>Client List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Phone Number</th>
+                <!-- Add more columns as needed -->
+            </tr>
+        </thead>
+        <tbody>
+            {% for client in clients %}
+            <tr>
+                <td><a href="{% url 'client_details' client.id %}">{{ client.client_name }}</a></td>
+                <td>{{ client.client_phonenumber }}</td>
+                <!-- Add more columns as needed -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
