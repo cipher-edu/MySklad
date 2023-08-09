@@ -23,3 +23,29 @@ def items_history(request):
         'creation_history': creation_history,
         'output_history': output_history,
     })
+
+def calculate_profit(item):
+    return item.items_outprice - item.items_inprice
+
+#####
+
+def calculate_profit(item):
+    return item.items_outprice - item.items_inprice
+
+def calculate_total_profit(items):
+    total_profit = 0
+    for item in items:
+        total_profit += calculate_profit(item)
+    return total_profit
+
+def item_list(request):
+    all_items = Items.objects.all()
+    total_profit = calculate_total_profit(all_items)
+    
+    context = {
+        'items': all_items,
+        'total_profit': total_profit,
+    }
+    
+    return render(request, 'item_list.html', context)
+

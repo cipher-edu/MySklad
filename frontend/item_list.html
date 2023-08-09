@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Item List</title>
+</head>
+<body>
+    <h1>Item List</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Item Brand</th>
+                <th>Item Name</th>
+                <th>In Price</th>
+                <th>Out Price</th>
+                <th>Profit</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% load skladik.custom_filters %}
+
+            {% for item in items %}
+            <tr>
+                <td>{{ item.items_brand }}</td>
+                <td>{{ item.items_name }}</td>
+                <td>{{ item.items_inprice }}</td>
+                <td>{{ item.items_outprice }}</td>
+                <td>{{ item.items_outprice|default:0 - item.items_inprice|default:0 }}</td>
+
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <p>Total Profit: {{ total_profit }}</p>
+</body>
+</html>
