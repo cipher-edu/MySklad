@@ -32,7 +32,7 @@
     </table>
     <a href="{% url 'client_list' %}">Back to Client List</a>
     <a href="{% url 'deliver_product' client.id %}">Deliver Product</a>
-    <a href="{% url 'end_service' client.id %}">End Service</a>
+    <a href="{% url 'end_service' client_id=client.id %}?product_id={{ product.id }}">End Service</a>
     <a href="{% url 'client_history' client_id=client.id %}">View Client History</a>
 
 </body>

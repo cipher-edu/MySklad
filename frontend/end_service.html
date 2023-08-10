@@ -14,9 +14,11 @@
         <label for="product">Select Product:</label>
         <select name="product_id" required>
             {% for product in products %}
-                <option value="{{ product.pk }}">{{ product.items_name }}</option>
+                <option value="{{ product.pk }}" {% if product.pk|stringformat:"s" == selected_product_id %}selected{% endif %}>{{ product.items_name }}</option>
             {% endfor %}
-        </select><br>      
+        </select><br>
+        <br>
+              
         
         <label for="product_defective">Defects:</label>
         <input type="text" name="product_defective" required><br>

@@ -111,18 +111,20 @@ def end_service(request, client_id):
 
         return redirect('client_details', client_id=client_id)  # Redirect to client details view
 
-    # Handle GET request (display form)
     client = Clientadd.objects.get(pk=client_id)
     products = CerviseClient.objects.filter(client_name=client)
     sklad_items = Items.objects.all()
     workers = Worker.objects.all()
 
-    return render(request, 'end_service.html', {
+    product_id = request.GET.get('product_id')  # Retrieve the product_id from the GET parameters
+    context = {
         'client': client,
         'products': products,
         'sklad_items': sklad_items,
         'workers': workers,
-    })
+        'selected_product_id': product_id,  # Pass the selected product_id to the template
+    }
+    return render(request, 'end_service.html', context=context)
 
 def client_history(request, client_id):
     client = Clientadd.objects.get(pk=client_id)
