@@ -2,6 +2,32 @@ from django.shortcuts import render, redirect
 from .models import *
 from .forms import CreateProductForm, DeliverProductForm
 from django.shortcuts import get_object_or_404
+from django.shortcuts import render, redirect
+
+def calculate_reports(request):
+    if request.method == 'POST':
+        start_date = request.POST['start_date']
+        end_date = request.POST['end_date']
+
+        # Calculate product and output reports
+        products = Items.objects.filter(items_creator=request.user)
+        service_entries = EndserviceClient.objects.filter(
+            product__client_name__ovner=request.user,
+            product__client_name__client_reception_time__range=[start_date, end_date]
+        )
+
+        total_products = products.count()
+        total_output = service_entries.count()
+
+        return render(request, 'reports.html', {
+            'start_date': start_date,
+            'end_date': end_date,
+            'total_products': total_products,
+            'total_output': total_output,
+        })
+
+    return render(request, 'calculate_reports.html')
+
 
 def create_product(request):
     if request.method == 'POST':
