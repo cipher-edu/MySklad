@@ -1,8 +1,7 @@
 from django.shortcuts import render, redirect
 from .models import *
 from .forms import CreateProductForm, DeliverProductForm
-from django.shortcuts import get_object_or_404
-from django.shortcuts import render, redirect
+from django.shortcuts import get_object_or_404, HttpResponse
 
 def calculate_reports(request):
     if request.method == 'POST':
@@ -103,6 +102,10 @@ def client_details(request, client_id):
     # client = Clientadd.objects.get(pk=client_id)
     return render(request, 'client_details.html', {'client': client })
 
+from django.shortcuts import get_object_or_404
+from django.http import HttpResponse
+# ...
+
 def end_service(request, client_id):
     if request.method == 'POST':
         client = Clientadd.objects.get(pk=client_id)
@@ -117,9 +120,12 @@ def end_service(request, client_id):
         cervice_item_price = int(request.POST['cervice_item_price'])
         clien_service_price = int(request.POST['clien_service_price'])
         topshiruvchi_id = request.POST['topshiruvchi']
-        topshiruvchi = Worker.objects.get(pk=topshiruvchi_id)
-        coment = request.POST['coment']
-
+        
+        topshiruvchi_id = request.POST['topshiruvchi']
+        try:
+            topshiruvchi = Worker.objects.get(pk=topshiruvchi_id)
+        except Worker.DoesNotExist:
+            topshiruvchi = None  
         end_service_entry = EndserviceClient(
             client_name=client,
             product=product,
@@ -130,12 +136,12 @@ def end_service(request, client_id):
             sklad_item=sklad_item,
             cervice_item_price=cervice_item_price,
             clien_service_price=clien_service_price,
-            topshiruvchi=topshiruvchi,
+            topshiruvchi=topshiruvchi,  # Use the retrieved Worker instance
             coment=coment,
         )
         end_service_entry.save()
 
-        return redirect('client_details', client_id=client_id)  # Redirect to client details view
+        return redirect('client_details', client_id=client_id)
 
     client = Clientadd.objects.get(pk=client_id)
     products = CerviseClient.objects.filter(client_name=client)
