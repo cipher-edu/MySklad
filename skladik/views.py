@@ -3,6 +3,9 @@ from .models import *
 from .forms import CreateProductForm, DeliverProductForm
 from django.shortcuts import get_object_or_404, HttpResponse
 
+
+def home(request):
+    return render(request, 'index.html')
 def calculate_reports(request):
     if request.method == 'POST':
         start_date = request.POST['start_date']
