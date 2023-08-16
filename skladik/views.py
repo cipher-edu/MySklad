@@ -4,8 +4,23 @@ from .forms import CreateProductForm, DeliverProductForm
 from django.shortcuts import get_object_or_404, HttpResponse
 
 
+
 def home(request):
-    return render(request, 'index.html')
+    total_goods = Items.objects.count()
+    total_goods_value = sum(item.items_inprice for item in Items.objects.all())
+    total_goods_percent = (total_goods_value / total_goods) * 100 if total_goods > 0 else 0
+    total_customers = Clientadd.objects.count()
+    total_services = EndserviceClient.objects.count()
+
+    context = {
+        'total_goods': total_goods,
+        'total_goods_value': total_goods_value,
+        'total_goods_percent': total_goods_percent,
+        'total_customers': total_customers,
+        'total_services': total_services,
+    }
+    return render(request, 'index.html', context)
+
 def calculate_reports(request):
     if request.method == 'POST':
         start_date = request.POST['start_date']
