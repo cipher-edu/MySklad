@@ -1,9 +1,9 @@
 from django.shortcuts import render, redirect
 from .models import *
 from .forms import CreateProductForm, DeliverProductForm
-from django.shortcuts import get_object_or_404, HttpResponse
-
-
+from django.shortcuts import get_object_or_404
+from django.contrib import messages
+from django.http import HttpResponse
 
 def home(request):
     total_goods = Items.objects.count()
@@ -90,6 +90,7 @@ def product_list(request):
     return render(request, 'product_list.html', {'products': products})
 
 # views.py
+
 def create_client(request):
     if request.method == 'POST':
         client_name = request.POST['client_name']
@@ -105,9 +106,10 @@ def create_client(request):
         )
         new_client.save()
 
-        return redirect('client_list')  # Redirect to the client list view
+        messages.success(request, 'Mijoz muvofaqiyatli saqlandi. Mijozlar bazasiga o\'ting')  # Add a success message
 
-    # Handle GET request (display form)
+        # return redirect('client_list')  # Redirect to the client list view
+
     owners = Worker.objects.all()
     return render(request, 'create_client.html', {'owners': owners})
 
@@ -120,8 +122,7 @@ def client_details(request, client_id):
     # client = Clientadd.objects.get(pk=client_id)
     return render(request, 'client_details.html', {'client': client })
 
-from django.shortcuts import get_object_or_404
-from django.http import HttpResponse
+
 # ...
 
 def end_service(request, client_id):

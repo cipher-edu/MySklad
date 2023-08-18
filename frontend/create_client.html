@@ -1,26 +1,73 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Client</title>
+    {% include 'base/links.html' %}
 </head>
 <body>
-    <h1>Create New Client</h1>
-    <form method="post">
-        {% csrf_token %}
-        <label for="client_name">Client Name:</label>
-        <input type="text" id="client_name" name="client_name" required><br>
-        <label for="client_phonenumber">Phone Number:</label>
-        <input type="tel" id="client_phonenumber" name="client_phonenumber" required><br>
-        <label for="owner">Owner:</label>
-        <select id="owner" name="owner" required>
-            {% for owner in owners %}
-                <option value="{{ owner.id }}">{{ owner.worker_name }}</option>
-            {% endfor %}
-        </select><br>
-        <button type="submit">Create Client</button>
-    </form>
-    <a href="{% url 'client_list' %}">Back to Client List</a>
+    <div class="row">
+        {% if messages %}
+        <div class="alert alert-success">
+            <ul>
+                {% for message in messages %}
+                <li>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <h1>Mijoz yaratish</h1>
+                    <br>
+                    <form method="post">
+
+                        {% csrf_token %}
+                        <div class="form-group row">
+                            <label class="col-sm-2 control-label" for="client_name"><h4>Client Name:</h4></label>
+                            <div class="col-sm-10">
+                                <input class="form-control col-sm-4" type="text" id="example-input-normal" name="client_name" required><br>
+                            </div>
+                        </div> 
+                            <div class="form-group row">
+                                <label class="col-sm-2 control-label" for="client_phonenumber"><h4>Phone Number:</h4></label>
+                                <div class="col-sm-10">
+                                    <input class="form-control col-sm-4" type="tel" value="+998 99 999 99 99" id="client_phonenumber" name="client_phonenumber" required><br>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label class="col-sm-2 control-label" for="owner"><h4>Ishchi xodim</h4></label>
+                                <div class="col-sm-10">
+                                    <select class="select2 form-control mb-3 custom-select col-sm-4" id="owner" name="owner" required>
+                                        {% for owner in owners %}
+                                            <option value="{{ owner.id }}">{{ owner.worker_name }}</option>
+                                        {% endfor %}
+                                    </select><br>
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <button class="btn btn-outline-success waves-effect waves-light" type="submit">Mijozni saqlash</button>
+                            </div>
+                            <div class="form-group row">
+                                <a href="{% url 'client_list' %}">
+                                    <button class="btn btn-primary waves-effect waves-light" type="button">
+                                        Mijozlar bazasiga qaytish
+                                    </button>
+                                </a>
+                            </div>
+                        </div>
+                    </form>
+            </div>
+        </div>
+    </div>
+    
+
+    
+    <!-- Your form code here -->
+    
+                    {% include 'base/js.html' %}
 </body>
 </html>
