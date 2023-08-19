@@ -85,7 +85,7 @@ def deliver_product(request, client_id):
     return render(request, 'deliver_product.html', {'service_categories': service_categories, 'client_id': client_id})
 
 
-def product_list(request):
+def product_list(request,):
     products = Items.objects.all()
     return render(request, 'product_list.html', {'products': products})
 

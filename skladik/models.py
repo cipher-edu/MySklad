@@ -47,6 +47,7 @@ class Items(models.Model):
     class Meta:
         verbose_name = 'Mahsulot turlari'
         verbose_name_plural = 'Mahsulot turlarini yaratish'
+        
     def __str__(self):
         return self.items_name
 
