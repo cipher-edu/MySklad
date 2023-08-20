@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, re_path
 from .views import *
 
 urlpatterns = [
@@ -13,7 +13,10 @@ urlpatterns = [
     path('end_service/<uuid:client_id>/', end_service, name='end_service'),
     path('calculate_reports/', calculate_reports, name='calculate_reports'),
     path('client/history/<uuid:client_id>/', client_history, name='client_history'),
-
+    path('404/', custom_404_view, name='custom_404'),
 
     # Add more URL patterns as needed
 ]
+
+
+handler404 = 'skladik.views.custom_404_view'

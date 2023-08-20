@@ -5,6 +5,9 @@ from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.http import HttpResponse
 
+def custom_404_view(request, exception):
+    return render(request, '404.html', status=404)
+
 def home(request):
     total_goods = Items.objects.count()
     total_goods_value = sum(item.items_inprice for item in Items.objects.all())
