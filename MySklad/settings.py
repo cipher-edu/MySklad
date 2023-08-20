@@ -24,9 +24,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECRET_KEY = 'django-insecure-k&bgac!mdiq4bg_nbcyuj-lmakfdxoia4xq*hiy#8p1_^5khj0'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-SECRET_KEY = config('SECRET_KEY')
-# DEBUG = True
-DEBUG = config('DEBUG', default=False, cast=bool)
+SECRET_KEY = 'django-insecure-k&bgac!mdiq4bg_nbcyuj-lmakfdxoia4xq*hiy#8p1_^5khj0'
+DEBUG = False
 
 ALLOWED_HOSTS = ['cipher-edu.uz', 'www.cipher-edu.uz', '127.0.0.1']
 
@@ -138,7 +137,6 @@ STATICFILES_DIRS = ['/home/ciphered/django/static/']
 MEDIA_ROOT = '/home/ciphered/django/media/'
 MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = '/'
-LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/login'
 
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

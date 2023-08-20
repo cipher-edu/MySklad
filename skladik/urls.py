@@ -14,7 +14,8 @@ urlpatterns = [
     path('calculate_reports/', calculate_reports, name='calculate_reports'),
     path('client/history/<uuid:client_id>/', client_history, name='client_history'),
     path('404/', custom_404_view, name='custom_404'),
-
+    path('login/', user_login, name='login'),
+    path('logout/', custom_logout, name='custom_logout'),
     # Add more URL patterns as needed
 ]
 

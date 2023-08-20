@@ -4,10 +4,16 @@ from .forms import CreateProductForm, DeliverProductForm
 from django.shortcuts import get_object_or_404
 from django.contrib import messages
 from django.http import HttpResponse
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login, logout
+
+
 
 def custom_404_view(request, exception):
     return render(request, '404.html', status=404)
 
+@login_required
 def home(request):
     total_goods = Items.objects.count()
     total_goods_value = sum(item.items_inprice for item in Items.objects.all())
@@ -23,6 +29,24 @@ def home(request):
         'total_services': total_services,
     }
     return render(request, 'index.html', context)
+
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('home')  # Redirect to dashboard view after successful login
+        else:
+            error_message = "Invalid login credentials. Please try again."
+            return render(request, 'registration/login.html', {'error_message': error_message})
+    return render(request, 'registration/login.html')
+
+@login_required 
+def custom_logout(request):
+    logout(request)
+    return redirect(reverse('login'))  
 
 def calculate_reports(request):
     if request.method == 'POST':
