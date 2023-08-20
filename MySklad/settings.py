@@ -125,8 +125,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/ciphered/cipher-edu.uz/django/staticfiles/'
-STATICFILES_DIRS = ['/home/ciphered/cipher-edu.uz/django/static/']
+STATIC_ROOT = '/home/ciphered/django/staticfiles/'
+STATICFILES_DIRS = ['/home/ciphered/django/static/']
 #local uchun
 # STATIC_ROOT = BASE_DIR / 'staticfiles'
 # STATICFILES_DIRS = [
@@ -135,7 +135,7 @@ STATICFILES_DIRS = ['/home/ciphered/cipher-edu.uz/django/static/']
 
 #local media
 # MEDIA_ROOT = BASE_DIR / 'media'
-MEDIA_ROOT = '/home/ciphered/cipher-edu.uz/django/media/'
+MEDIA_ROOT = '/home/ciphered/django/media/'
 MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
