@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Client Service History</title>
+</head>
+<body>
+    <h1>Client Service History - {{ client.client_name }}</h1>
+    <table border="1">
+        <thead>
+            <tr>
+                <th>Product Name</th>
+                <th>Product Value</th>
+                <th>Product Color</th>
+                <th>Service Category</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for service in service_history %}
+            <tr>
+                <td>{{ service.product_name }}</td>
+                <td>{{ service.product_value }}</td>
+                <td>{{ service.product_color }}</td>
+                <td>{{ service.service_catetegory }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+    
+    <a href="{% url 'end_service' client.id %}">End Service</a>
+
+</body>
+</html>

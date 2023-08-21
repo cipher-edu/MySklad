@@ -1,0 +1,25 @@
+Metadata-Version: 2.0
+Name: django-rest-fuzzysearch
+Version: 0.5.1
+Summary: Fuzzy Search for Django REST Framework
+Home-page: https://github.com/vsemionov/django-rest-fuzzysearch
+Author: Victor Semionov
+Author-email: vsemionov@gmail.com
+License: MIT
+Keywords: fuzzy search django rest python
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Environment :: Web Environment
+Classifier: Framework :: Django
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Topic :: Internet :: WWW/HTTP :: Indexing/Search
+Classifier: Topic :: Software Development :: Libraries
+Requires-Dist: Django (>=1.11)
+Requires-Dist: djangorestframework
+
+UNKNOWN
+
+
