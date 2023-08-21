@@ -137,6 +137,7 @@ STATICFILES_DIRS = ['/home/ciphered/django/static/']
 MEDIA_ROOT = '/home/ciphered/django/media/'
 MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/login'
 
 # STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"

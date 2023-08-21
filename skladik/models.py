@@ -44,6 +44,7 @@ class Items(models.Model):
     items_color = models.CharField(max_length=50, verbose_name="Tovar rangi")
     items_creator = models.CharField(max_length=50, verbose_name="Tovar krituvchi")
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False) 
+    
     class Meta:
         verbose_name = 'Mahsulot turlari'
         verbose_name_plural = 'Mahsulot turlarini yaratish'

@@ -1,16 +1,20 @@
 from django import forms
-from .models import Cash, Organizationsservice
+from .models import *
 
-class CreateProductForm(forms.Form):
-    brand = forms.CharField(max_length=150)
-    name = forms.CharField(max_length=150)
-    inprice = forms.IntegerField()
-    cash_value = forms.ModelChoiceField(queryset=Cash.objects.all())
-    outprice = forms.IntegerField()
-    value = forms.IntegerField()
-    color = forms.CharField(max_length=50)
-    creator = forms.CharField(max_length=50)
-
+class CreateProductForm(forms.ModelForm):
+    class Meta:
+        model = Items
+        fields = '__all__'
+        widgets = {
+            'items_brand': forms.TextInput(attrs={'class':'form-control col-md-4'}),
+            'items_name': forms.TextInput(attrs={'class':'form-control col-md-4'}),
+            'items_inprice': forms.TextInput(attrs={'class':'form-control col-md-4'}),
+            'items_outprice': forms.TextInput(attrs={'class':'form-control col-md-4'}),
+            'items_incash_value': forms.Select(attrs={'class':'form-control col-md-4'}),
+            'items_value': forms.TextInput(attrs={'class':'form-control col-md-4'}),
+            'items_color': forms.TextInput(attrs={'class':'form-control col-md-4'}),
+            'items_creator': forms.TextInput(attrs={'class':'form-control col-md-4'}),
+        }
 class DeliverProductForm(forms.Form):
     product_name = forms.CharField(max_length=150)
     product_value = forms.IntegerField()
