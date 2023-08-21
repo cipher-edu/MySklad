@@ -27,7 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-k&bgac!mdiq4bg_nbcyuj-lmakfdxoia4xq*hiy#8p1_^5khj0'
 DEBUG = False
 
-ALLOWED_HOSTS = ['cipher-edu.uz', 'www.cipher-edu.uz', '127.0.0.1']
+ALLOWED_HOSTS = ['crm.cipher-edu.uz', 'www.crm.cipher-edu.uz', '127.0.0.1']
 
 
 # Application definition
@@ -124,8 +124,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = '/home/ciphered/django/staticfiles/'
-STATICFILES_DIRS = ['/home/ciphered/django/static/']
+STATIC_ROOT = '/home/ciphered/crm/staticfiles/'
+STATICFILES_DIRS = ['/home/ciphered/crm/static/']
 #local uchun
 # STATIC_ROOT = BASE_DIR / 'staticfiles'
 # STATICFILES_DIRS = [
@@ -134,7 +134,7 @@ STATICFILES_DIRS = ['/home/ciphered/django/static/']
 
 #local media
 # MEDIA_ROOT = BASE_DIR / 'media'
-MEDIA_ROOT = '/home/ciphered/django/media/'
+MEDIA_ROOT = '/home/ciphered/crm/media/'
 MEDIA_URL = '/media/'
 LOGIN_REDIRECT_URL = '/'
 LOGOUT_REDIRECT_URL = '/'
