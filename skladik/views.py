@@ -8,8 +8,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Sum
-
-
+from django.db.models import Q
 
 def custom_404_view(request, exception):
     return render(request, '404.html', status=404)
@@ -155,10 +154,21 @@ def create_product(request):
 #     return render(request, 'deliver_product.html', {'service_categories': service_categories, 'client_id': client_id})
 
 @login_required
-def product_list(request,):
-    products = Items.objects.all()
+def product_list(request):
+    qidirish = request.GET.get('q')
+    products = None
+    
+    if qidirish:
+        # Perform a case-insensitive partial search
+        products = Items.objects.filter(
+            Q(items_brand__icontains=qidirish) |  # Match brand containing the query
+            Q(items_name__icontains=qidirish)  # Match name containing the query
+        )
+    else:
+        products = Items.objects.all()
+    
     context = {
-        'products':products
+        'products': products
     }
     return render(request, 'product_list.html', context=context )
 
@@ -188,8 +198,21 @@ def create_client(request):
 
 @login_required
 def client_list(request):
-    clients = Clientadd.objects.all()
-    return render(request, 'client_list.html', {'clients': clients})
+    qidirish = request.GET.get('q')
+    clients = None
+    
+    if qidirish:
+        clients = Clientadd.objects.filter(
+            Q(client_name__icontains=qidirish) |  # Match brand containing the query
+            Q(client_phonenumber__icontains=qidirish)  # Match name containing the query
+        )
+    else:
+        clients = Clientadd.objects.all()
+    # clients = Clientadd.objects.all()
+    context = {
+        'clients':clients
+    }
+    return render(request, 'client_list.html', context=context)
 
 @login_required
 def client_details(request, client_id):
