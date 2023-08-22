@@ -13,6 +13,10 @@ from django.db.models import Q
 def custom_404_view(request, exception):
     return render(request, '404.html', status=404)
 
+
+def error_500(request):
+        data = {}
+        return render(request,'myapp/error_500.html', data)
 @login_required
 def home(request):
     total_sum = Items.objects.aggregate(total_sum=Sum('items_inprice'))['total_sum']
@@ -216,54 +220,30 @@ def client_list(request):
 
 @login_required
 def client_details(request, client_id):
-    client = get_object_or_404(Clientadd, id=client_id)
-    # client = Clientadd.objects.get(pk=client_id)
-    return render(request, 'client_details.html', {'client': client })
+    client = get_object_or_404(Clientadd, pk=client_id)
+    services = EndserviceClient.objects.filter(client_name=client)
+    context = {
+        'client': client,
+        'services': services,
+    }
+    return render(request, 'client_details.html', context)
 
-
-# ...
 @login_required
 def end_service(request, client_id):
-    if request.method == 'POST':
-        client = Clientadd.objects.get(pk=client_id)
-        product_id = request.POST['product_id']
-        product = CerviseClient.objects.get(pk=product_id)
-        product_defective = request.POST['product_defective']
-        product_repaired = request.POST['product_repaired']
-        product_not_repaired = request.POST['product_not_repaired']
-        kuchadan_tovar = request.POST['kuchadan_tovar']
-        sklad_item_id = request.POST['sklad_item']
-        sklad_item = Items.objects.get(pk=sklad_item_id)
-        cervice_item_price = int(request.POST['cervice_item_price'])
-        clien_service_price = int(request.POST['clien_service_price'])
-        topshiruvchi_id = request.POST['topshiruvchi']
-        
-        topshiruvchi_id = request.POST['topshiruvchi']
-        try:
-            topshiruvchi = Worker.objects.get(pk=topshiruvchi_id)
-        except Worker.DoesNotExist:
-            topshiruvchi = None  
-        end_service_entry = EndserviceClient(
-            client_name=client,
-            product=product,
-            product_defective=product_defective,
-            product_repaired=product_repaired,
-            produtct_not_repaired=product_not_repaired,
-            kuchadan_tovar=kuchadan_tovar,
-            sklad_item=sklad_item,
-            cervice_item_price=cervice_item_price,
-            clien_service_price=clien_service_price,
-            topshiruvchi=topshiruvchi,  # Use the retrieved Worker instance
-            coment=coment,
-        )
-        end_service_entry.save()
-
-        return redirect('client_details', client_id=client_id)
-
     client = Clientadd.objects.get(pk=client_id)
     products = CerviseClient.objects.filter(client_name=client)
     sklad_items = Items.objects.all()
     workers = Worker.objects.all()
+
+    if request.method == 'POST':
+        form = EndServiceForm(request.POST)
+        if form.is_valid():
+            end_service_entry = form.save(commit=False)
+            end_service_entry.client_name = client
+            end_service_entry.save()
+            return redirect('client_details', client_id=client_id)
+    else:
+        form = EndServiceForm()
 
     product_id = request.GET.get('product_id')  # Retrieve the product_id from the GET parameters
     context = {
@@ -272,6 +252,7 @@ def end_service(request, client_id):
         'sklad_items': sklad_items,
         'workers': workers,
         'selected_product_id': product_id,  # Pass the selected product_id to the template
+        'form': form,  # Include the form in the context
     }
     return render(request, 'end_service.html', context=context)
 

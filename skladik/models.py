@@ -125,7 +125,7 @@ class EndserviceClient(models.Model):
     cervice_item_price = models.IntegerField(verbose_name="Ishlatilingan texnika narxi")
     clien_service_price = models.IntegerField(verbose_name="Service narxi")
     topshiruvchi = models.ForeignKey(Worker, on_delete=models.CASCADE, verbose_name='xizmatni yakunlvchi')
-    coment = models.TextField(verbose_name="koment")
+    coment = models.CharField(max_length=150, verbose_name="koment")
 
     class Meta:
         verbose_name = 'Service xizmat yakunlash'

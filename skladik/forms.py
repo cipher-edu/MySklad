@@ -20,3 +20,12 @@ class DeliverProductForm(forms.Form):
     product_value = forms.IntegerField()
     product_color = forms.CharField(max_length=35)
     service_category = forms.ModelChoiceField(queryset=Organizationsservice.objects.all())
+
+
+class EndServiceForm(forms.ModelForm):
+    class Meta:
+        model = EndserviceClient
+        fields ='__all__'
+        
+class ClientForm(forms.Form):
+    client = forms.ModelChoiceField(queryset=Clientadd.objects.all(), empty_label="Select a client")

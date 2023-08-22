@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # SECURITY WARNING: don't run with debug turned on in production!
 SECRET_KEY = 'django-insecure-k&bgac!mdiq4bg_nbcyuj-lmakfdxoia4xq*hiy#8p1_^5khj0'
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['crm.cipher-edu.uz', 'www.crm.cipher-edu.uz', '127.0.0.1']
 
@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'skladik',
     'widget_tweaks',
     'whitenoise',
-    'fuzzy_search',
 ]
     
     

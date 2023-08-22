@@ -4,36 +4,76 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Client Details</title>
+    {% include 'base/links.html' %}
 </head>
 <body>
-    <h1>Client Details: {{ client.client_name }}</h1>
-    <p><strong>Client Phone Number:</strong> {{ client.client_phonenumber }}</p>
-    <p><strong>Owner:</strong> {{ client.ovner }}</p>
-    <h2>Service History</h2>
-    <table>
+    {% block content %}
+    <h2>Mijoz ismi</h2>
+    <h3>{{ client.client_name }}</h3>
+    <p>Telefon raqami: {{ client.client_phonenumber }}</p>
+    <p>Mijozni ro'yxatga oluvchi: {{ client.ovner }}</p>
+    <h4>Servis xizmat tarixi</h4>
+    <table class="table table-hover">
         <thead>
             <tr>
-                <th>Product Name</th>
-                <th>Product Value</th>
-                <th>Product Color</th>
-                <th>Service Category</th>
+                <th>
+                    Tovar nomi
+                </th>
+                <th>
+                    Aybi
+                </th>
+                <th>
+                    amirlanish
+                </th>
+                <th>
+                    Tamirlanmasligi
+                </th>
+                <th>
+                    Qo'shimcha (ko'chadan tovar)
+                </th>
+                <th>
+                    Qo'shimcha Kuchadan Tovar
+                </th>
+                <th>
+                    Sklad tovar
+                </th>
+                <th>
+                    Service tovar narxi
+                </th>
+                <th>
+                    Xizmat narxi
+                </th>
+                <th>
+                    Jo'natuvchi
+                </th>
+                <th>
+                    Koment
+                </th>
             </tr>
         </thead>
         <tbody>
-            {% for service in service_history %}
-                <tr>
-                    <td>{{ service.product_name }}</td>
-                    <td>{{ service.product_value }}</td>
-                    <td>{{ service.product_color }}</td>
-                    <td>{{ service.service_catetegory }}</td>
-                </tr>
-            {% endfor %}
+            {% for service in services %}
+            <tr>
+              <td>{{ service.product }}</td>
+              <td>{{ service.product_defective }}</td>
+              <td>{{ service.product_repaired }}</td>
+              <td>{{ service.product_not_repaired }}</td>
+              <td>{{ service.kuchadan_tovar }}</td>
+              <td>{{ service.sklad_item }}</td>
+              <td>{{ service.cervice_item_price }}</td>
+              <td>{{ service.clien_service_price }}</td>
+              <td>{{ service.topshiruvchi }}</td>
+              <td>{{ service.coment }}</td>
+            </tr>
+          {% endfor %}
         </tbody>
     </table>
+
+  </div>
+  {% endblock %}
     <a href="{% url 'client_list' %}">Back to Client List</a>
-   
     <a href="{% url 'end_service' client_id=client.id %}?product_id={{ product.id }}">End Service</a>
     <a href="{% url 'client_history' client_id=client.id %}">View Client History</a>
-
+{% include 'base/js.html' %}
 </body>
 </html>
