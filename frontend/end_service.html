@@ -11,12 +11,16 @@
     <h2>End Service for {{ client.client_name }}</h2>
     <h3>Product: {{ product.product_name }}</h3>
   
-    <form method="post">
+    <!-- end_service.html -->
+    <form method="post" enctype="multipart/form-data">
       {% csrf_token %}
+      
+      <!-- Render form fields -->
       {{ form.as_p }}
-  
+      
       <button type="submit">Submit</button>
     </form>
+
   
     <p><a href="{% url 'client_details' client.id %}">Back to Client Details</a></p>
   {% endblock %}

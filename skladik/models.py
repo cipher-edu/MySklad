@@ -119,13 +119,13 @@ class EndserviceClient(models.Model):
     product = models.ForeignKey(CerviseClient, on_delete=models.CASCADE, verbose_name="Texnikani tanla")
     product_defective = models.CharField(max_length=150, verbose_name="Maxsulot aybi")
     product_repaired = models.CharField(max_length=150, verbose_name="Maxsulotni ta'mirlash")
-    produtct_not_repaired = models.CharField(max_length=150, verbose_name="Maxsulotni ta'mirlamaslik")
+    product_not_repaired = models.CharField(max_length=150, verbose_name="Maxsulotni ta'mirlamaslik")
     kuchadan_tovar = models.CharField(max_length=150,verbose_name="bozordan tavar olinishi")
     sklad_item = models.ForeignKey(Items, on_delete=models.CASCADE, verbose_name="Sklad maxsulot")
     cervice_item_price = models.IntegerField(verbose_name="Ishlatilingan texnika narxi")
     clien_service_price = models.IntegerField(verbose_name="Service narxi")
     topshiruvchi = models.ForeignKey(Worker, on_delete=models.CASCADE, verbose_name='xizmatni yakunlvchi')
-    coment = models.CharField(max_length=150, verbose_name="koment")
+    comment = models.CharField(max_length=150, verbose_name="koment")
 
     class Meta:
         verbose_name = 'Service xizmat yakunlash'
@@ -133,6 +133,7 @@ class EndserviceClient(models.Model):
 
     def __str__(self):
         return self.product_defective
+
 # ishhonlarni kategoriya bo'yicha shakllantirish
 class Organizationscategory(models.Model):
     categoryname = models.CharField(max_length=100)

@@ -1,0 +1,44 @@
+
+
+{% block content %}
+  <h2>Client End Service</h2>
+
+  <h3>Client Information</h3>
+  <p><strong>Client Name:</strong> {{ client.client_name }}</p>
+  <!-- Add more client information fields here -->
+
+  <h3>Service Entries</h3>
+  <ul>
+    {% for entry in service_entries %}
+      <li>
+        <strong>Product Defective:</strong> {{ entry.product_defective }}
+        <!-- Display other service entry fields here -->
+      </li>
+    {% empty %}
+      <li>No service entries for this client.</li>
+    {% endfor %}
+  </ul>
+
+  <h3>Add Service Entry</h3>
+  <form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Save</button>
+  </form>
+
+  <h3>Related Products</h3>
+  <ul>
+    {% for product in products %}
+      <li>
+        <strong>Product Name:</strong> {{ product.product_name }}
+        <!-- Display other product fields here -->
+      </li>
+    {% empty %}
+      <li>No related products for this client.</li>
+    {% endfor %}
+  </ul>
+
+  <!-- Add more content as needed, such as product selection dropdown, etc. -->
+
+  <a href="{% url 'client_list' %}">Back to Client List</a>
+{% endblock %}

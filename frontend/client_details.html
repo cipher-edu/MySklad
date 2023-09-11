@@ -32,9 +32,6 @@
                     Qo'shimcha (ko'chadan tovar)
                 </th>
                 <th>
-                    Qo'shimcha Kuchadan Tovar
-                </th>
-                <th>
                     Sklad tovar
                 </th>
                 <th>
@@ -45,6 +42,9 @@
                 </th>
                 <th>
                     Jo'natuvchi
+                </th>
+                <th>
+                    umumiy xisob
                 </th>
                 <th>
                     Koment
@@ -63,6 +63,7 @@
               <td>{{ service.cervice_item_price }}</td>
               <td>{{ service.clien_service_price }}</td>
               <td>{{ service.topshiruvchi }}</td>
+              <td>umumiy xisob</td>
               <td>{{ service.coment }}</td>
             </tr>
           {% endfor %}
@@ -72,7 +73,8 @@
   </div>
   {% endblock %}
     <a href="{% url 'client_list' %}">Back to Client List</a>
-    <a href="{% url 'end_service' client_id=client.id %}?product_id={{ product.id }}">End Service</a>
+    <a href="{% url 'client_end_service' client_id=client.id %}">Client End Service</a>
+
     <a href="{% url 'client_history' client_id=client.id %}">View Client History</a>
 {% include 'base/js.html' %}
 </body>

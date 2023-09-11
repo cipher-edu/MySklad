@@ -9,6 +9,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from django.db.models import Sum
 from django.db.models import Q
+from django.http import JsonResponse
 
 def custom_404_view(request, exception):
     return render(request, '404.html', status=404)
@@ -228,34 +229,72 @@ def client_details(request, client_id):
     }
     return render(request, 'client_details.html', context)
 
+# @login_required
+# def end_service(request, client_id):
+#     client = Clientadd.objects.get(pk=client_id)
+#     products = CerviseClient.objects.filter(client_name=client)
+#     sklad_items = Items.objects.all()
+#     workers = Worker.objects.all()
+
+#     if request.method == 'POST':
+#         form = EndServiceForm(request.POST)
+#         if form.is_valid():
+#             end_service_entry = form.save(commit=False)
+#             end_service_entry.client_name = client
+#             end_service_entry.save()
+#             return redirect('client_details', client_id=client_id)
+#     else:
+#         form = EndServiceForm()
+
+#     product_id = request.GET.get('product_id')  # Retrieve the product_id from the GET parameters
+#     context = {
+#         'client': client,
+#         'products': products,
+#         'sklad_items': sklad_items,
+#         'workers': workers,
+#         'selected_product_id': product_id,  # Pass the selected product_id to the template
+#         'form': form,  # Include the form in the context
+#     }
+#     return render(request, 'end_service.html', context=context)
 @login_required
-def end_service(request, client_id):
-    client = Clientadd.objects.get(pk=client_id)
+def client_end_service(request, client_id):
+    client = get_object_or_404(Clientadd, pk=client_id)
+    service_entries = EndserviceClient.objects.filter(client_name=client)
+
+    # Other data you may need
     products = CerviseClient.objects.filter(client_name=client)
     sklad_items = Items.objects.all()
     workers = Worker.objects.all()
 
     if request.method == 'POST':
-        form = EndServiceForm(request.POST)
+        form = EndserviceClientForm(request.POST)
         if form.is_valid():
             end_service_entry = form.save(commit=False)
             end_service_entry.client_name = client
             end_service_entry.save()
-            return redirect('client_details', client_id=client_id)
+            return redirect('client_end_service', client_id=client_id)
     else:
-        form = EndServiceForm()
+        form = EndserviceClientForm()
 
-    product_id = request.GET.get('product_id')  # Retrieve the product_id from the GET parameters
+    product_id = request.GET.get('product_id')
+
     context = {
         'client': client,
+        'service_entries': service_entries,
         'products': products,
         'sklad_items': sklad_items,
         'workers': workers,
-        'selected_product_id': product_id,  # Pass the selected product_id to the template
-        'form': form,  # Include the form in the context
+        'selected_product_id': product_id,
+        'form': form,
     }
-    return render(request, 'end_service.html', context=context)
 
+    return render(request, 'client_end_service.html', context=context)
+
+def get_products_for_client(request):
+    client_id = request.GET.get('client_id')
+    products = CerviseClient.objects.filter(client_name=client_id).values('id', 'product_name')
+    product_dict = {str(product['id']): product['product_name'] for product in products}
+    return JsonResponse({'products': product_dict})
 @login_required
 def client_history(request, client_id):
     client = Clientadd.objects.get(pk=client_id)

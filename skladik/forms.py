@@ -22,10 +22,24 @@ class DeliverProductForm(forms.Form):
     service_category = forms.ModelChoiceField(queryset=Organizationsservice.objects.all())
 
 
-class EndServiceForm(forms.ModelForm):
+class EndserviceClientForm(forms.ModelForm):
     class Meta:
         model = EndserviceClient
         fields ='__all__'
-        
+class ClientEndServiceForm(forms.Form):
+    client = forms.ModelChoiceField(queryset=Clientadd.objects.all(), label="Select Client")
+    product = forms.ModelChoiceField(queryset=CerviseClient.objects.none(), label="Select Product")
+
+    def __init__(self, *args, **kwargs):
+        super(ClientEndServiceForm, self).__init__(*args, **kwargs)
+        if 'client' in self.data:
+            try:
+                client_id = int(self.data.get('client'))
+                self.fields['product'].queryset = CerviseClient.objects.filter(client_name_id=client_id)
+            except (ValueError, TypeError):
+                pass
+        elif self.instance and self.instance.client_name:
+            self.fields['product'].queryset = CerviseClient.objects.filter(client_name_id=self.instance.client_name.id)
+            
 class ClientForm(forms.Form):
     client = forms.ModelChoiceField(queryset=Clientadd.objects.all(), empty_label="Select a client")
