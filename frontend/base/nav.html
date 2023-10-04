@@ -1,123 +1,248 @@
-<div class="topbar">
+{% load static %}
+<div id="preloader"><div id="status"><div class="spinner"></div></div></div>
 
-    <nav class="navbar-custom">
+<!-- Begin page -->
+<div id="wrapper">
 
-        <ul class="list-inline float-right mb-0">
-            <!-- language-->
-            <li class="list-inline-item hide-phone app-search">
-                <form role="search" class="">
-                    <input type="text" placeholder="Search..." class="form-control">
-                    <a href=""><i class="fa fa-search"></i></a>
-                </form>
-            </li>
-          
-            <li class="list-inline-item dropdown notification-list">
-                <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
-                   aria-haspopup="false" aria-expanded="false">
-                    <i class="ti-email noti-icon"></i>
-                    <span class="badge badge-danger noti-icon-badge">5</span>
+    <!-- ========== Left Sidebar Start ========== -->
+    <div class="left side-menu">
+        <button type="button" class="button-menu-mobile button-menu-mobile-topbar open-left waves-effect">
+            <i class="ion-close"></i>
+        </button>
+
+        <!-- LOGO -->
+        <div class="topbar-left">
+            <div class="text-center">
+                <!--<a href="index.html" class="logo"><i class="mdi mdi-assistant"></i>Zoter</a>-->
+                <a href="{% url 'home' %}" class="logo">
+                    <span style="font-size: 24px; color: azure;" class="logo-large">
+                        CIPHER CRM
+                    </span>
                 </a>
-                <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg">
-                    <!-- item-->
-                    <div class="dropdown-item noti-title">
-                        <h5><span class="badge badge-danger float-right">745</span>Messages</h5>
+            </div>
+        </div>
+
+        <div class="sidebar-inner niceScrollleft">
+
+            <div id="sidebar-menu">
+                <ul>
+                    <li class="menu-title">Main</li>
+
+                    <li>
+                        <a href="{% url 'home' %}" class="waves-effect">
+                            <i class="mdi mdi-airplay"></i>
+                            <span> Dashboard <span class="badge badge-pill badge-primary float-right">!</span></span>
+                        </a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'product_list' %}" class="waves-effect">
+                            <i class="mdi mdi-layers"></i> 
+                            <span> Tovarlar </span>
+                        </a>
+                        <!-- <ul class="list-unstyled">
+                            <li><a href="advanced-highlight.html">Highlight</a></li>
+                            <li><a href="advanced-rating.html">Rating</a></li>
+                            <li><a href="advanced-alertify.html">Alertify</a></li>
+                            <li><a href="advanced-rangeslider.html">Range Slider</a></li>
+                        </ul> -->
+                    </li>
+
+                    <li>
+                        <a href="#" class="waves-effect"><i class="mdi mdi-calendar-clock"></i><span> Calendar </span></a>
+                    </li>
+
+                    <li>
+                        <a href="{% url 'create_product' %}" class="waves-effect" >
+                            <i class="mdi mdi-bullseye"></i>
+                            <span> Tovar kritish </span>
+                        </a>
+                       
+                    </li>
+                    <li>
+                        <a href="{% url 'create_client' %}" class="waves-effect" >
+                            <i class="mdi mdi-account-multiple-plus "></i>
+                            <span> Mijoz yaratish </span>
+                        </a>
+                       
+                    </li>  <li>
+                        <a href="{% url 'client_list' %}" class="waves-effect" >
+                            <i class="mdi mdi-account-multiple-outline"></i>
+                            <span> Mijozlar ro'yxati </span>
+                        </a>
+                    </li> 
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div> <!-- end sidebarinner -->
+    </div>
+    <!-- Left Sidebar End -->
+
+    <!-- Start right Content here -->
+
+    <div class="content-page">
+        <!-- Start content -->
+        <div class="content">
+
+            <!-- Top Bar Start -->
+            <div class="topbar">
+
+                <nav class="navbar-custom">
+
+                    <ul class="list-inline float-right mb-0">
+                        <!-- language-->
+                        <li class="list-inline-item hide-phone app-search">
+                            <form role="search" class="">
+                                <input type="text" placeholder="Search..." class="form-control">
+                                <a href=""><i class="fa fa-search"></i></a>
+                            </form>
+                        </li>
+
+                        <li class="list-inline-item dropdown notification-list">
+                            <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button"
+                               aria-haspopup="false" aria-expanded="false">
+                                <img src="{% static 'assets/images/user.png' %}" alt="user" class="rounded-circle">
+                            </a>
+                            <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
+                                <!-- item-->
+                                <div class="dropdown-item noti-title">
+                                    <h5>Welcome</h5>
+                                </div>
+                                {% if request.user.is_authenticated %}
+                                <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle m-r-5 text-muted"></i> {{request.user.username}}</a>
+                                {% else %}
+                                <a class="dropdown-item" href="#"><i class="mdi mdi-wallet m-r-5 text-muted"></i>SignIn</a>
+                                {% endif %}
+                                <a class="dropdown-item" href="{% url 'logout' %}"><i class="mdi mdi-logout m-r-5 text-muted"></i> Logout</a>
+                            </div>
+                        </li>
+
+                    </ul>
+
+                    <ul class="list-inline menu-left mb-0">
+                        <li class="float-left">
+                            <button class="button-menu-mobile open-left waves-light waves-effect">
+                                <i class="mdi mdi-menu"></i>
+                            </button>
+                        </li>                                
+                    </ul>
+
+                    <div class="clearfix"></div>
+
+                </nav>
+
+            </div>
+            <!-- Top Bar End -->
+
+            <div class="page-content-wrapper ">
+
+                <div class="container-fluid">
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="page-title-box">
+                                <div class="btn-group float-right">
+                                    <ol class="breadcrumb hide-phone p-0 m-0">
+                                        <li class="breadcrumb-item"><a href="#">Zoter</a></li>
+                                        <li class="breadcrumb-item active">Dashboard</li>
+                                    </ol>
+                                </div>
+                                <h4 class="page-title">Dashboard</h4>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
                     </div>
+                    <!-- end page title end breadcrumb -->
+                    <div class="row">
+                        <div class="col-xl-12">
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex flex-row">
+                                                <div class="col-3 align-self-center">
+                                                    <div class="round">
+                                                        <i class="mdi mdi-eye"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-9 align-self-center text-right">
+                                                    <div class="m-l-10">
+                                                        <h5 class="mt-0">{{ total_goods }}</h5>
+                                                        <p class="mb-0 text-muted">Tovarlarning umumiy summasi {{ total_goods_value }} 
+                                                        <span class="badge bg-soft-success"><i class="mdi mdi-arrow-up"></i>
+                                                            Foizda o'sish
+                                                            {{ total_goods_percent|floatformat:2 }}%</span>
+                                                        </p>
+                                                    </div>
+                                                </div>                                                                                          
+                                            </div>
+                                            <div class="progress mt-3" style="height:3px;">
+                                                <div class="progress-bar  bg-success" role="progressbar" style="width: 35%;" aria-valuenow="35" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div><!--end card-body-->
+                                    </div><!--end card-->
+                                </div><!--end col-->
 
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon"><img src="assets/images/users/avatar-2.jpg" alt="user-img" class="img-fluid rounded-circle" /> </div>
-                        <p class="notify-details"><b>Charles M. Jones</b><small class="text-muted">Dummy text of the printing and typesetting industry.</small></p>
-                    </a>
+                                <div class="col-lg-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="d-flex flex-row">
+                                                <div class="col-3 align-self-center">
+                                                    <div class="round">
+                                                        <i class="mdi mdi-account-multiple-plus"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-9 text-right align-self-center">
+                                                    <div class="m-l-10 ">
+                                                        <h5 class="mt-0">{{ total_customers }}</h5>
+                                                        <p class="mb-0 text-muted">Mijozlar</p>
+                                                        <p>Ko'rsatilgan xizmatlarning umumiy summasi: {{ total_services_sum }}</p>
+                                                        <p>Bir mijozga o'rtacha xizmatlar: {{ avg_services_per_customer }}</p>
 
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon"><img src="assets/images/users/avatar-3.jpg" alt="user-img" class="img-fluid rounded-circle" /> </div>
-                        <p class="notify-details"><b>Thomas J. Mimms</b><small class="text-muted">You have 87 unread messages</small></p>
-                    </a>
+                                                    </div>
+                                                </div>                                                                                                                
+                                            </div>
+                                            <div class="progress mt-3" style="height:3px;">
+                                                <div class="progress-bar bg-warning" role="progressbar" style="width: 48%;" aria-valuenow="48" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div><!--end card-body-->
+                                    </div><!--end card-->
+                                </div><!--end col-->
 
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon"><img src="assets/images/users/avatar-4.jpg" alt="user-img" class="img-fluid rounded-circle" /> </div>
-                        <p class="notify-details"><b>Luis M. Konrad</b><small class="text-muted">It is a long established fact that a reader will</small></p>
-                    </a>
+                                <div class="col-lg-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="search-type-arrow"></div>
+                                            <div class="d-flex flex-row">
+                                                <div class="col-3 align-self-center">
+                                                    <div class="round ">
+                                                        <i class="mdi mdi-cart"></i>
+                                                    </div>
+                                                </div>
+                                                <div class="col-9 align-self-center text-right">
+                                                    <div class="m-l-10 ">
+                                                        <h5 class="mt-0">{{ total_sum }}</h5>
+                                                        <p class="mb-0 text-muted">New Orders</p>
+                                                    </div>
+                                                </div>                                                                
+                                            </div>
+                                            <div class="progress mt-3" style="height:3px;">
+                                                <div class="progress-bar bg-danger" role="progressbar" style="width: 61%;" aria-valuenow="61" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                        </div><!--end card-body-->
+                                    </div><!--end card-->
+                                </div><!--end col-->
+                            </div><!--end row-->
 
-                    <!-- All-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        View All
-                    </a>
+            </div> <!-- Page content Wrapper -->
 
-                </div>
-            </li>
+        </div> <!-- content -->
 
-            <li class="list-inline-item dropdown notification-list">
-                <a class="nav-link dropdown-toggle arrow-none waves-effect" data-toggle="dropdown" href="#" role="button"
-                   aria-haspopup="false" aria-expanded="false">
-                    <i class="ti-bell noti-icon"></i>
-                    <span class="badge badge-success noti-icon-badge">23</span>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right dropdown-arrow dropdown-menu-lg">
-                    <!-- item-->
-                    <div class="dropdown-item noti-title">
-                        <h5><span class="badge badge-danger float-right">87</span>Notification</h5>
-                    </div>
+        <footer class="footer">
+            © 2019 Zoter by Mannatthemes.
+        </footer>
 
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon bg-primary"><i class="mdi mdi-cart-outline"></i></div>
-                        <p class="notify-details"><b>Your order is placed</b><small class="text-muted">Dummy text of the printing and typesetting industry.</small></p>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon bg-success"><i class="mdi mdi-message"></i></div>
-                        <p class="notify-details"><b>New Message received</b><small class="text-muted">You have 87 unread messages</small></p>
-                    </a>
-
-                    <!-- item-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        <div class="notify-icon bg-warning"><i class="mdi mdi-martini"></i></div>
-                        <p class="notify-details"><b>Your item is shipped</b><small class="text-muted">It is a long established fact that a reader will</small></p>
-                    </a>
-
-                    <!-- All-->
-                    <a href="javascript:void(0);" class="dropdown-item notify-item">
-                        View All
-                    </a>
-
-                </div>
-            </li>
-
-            <li class="list-inline-item dropdown notification-list">
-                <a class="nav-link dropdown-toggle arrow-none waves-effect nav-user" data-toggle="dropdown" href="#" role="button"
-                   aria-haspopup="false" aria-expanded="false">
-                    <img src="{% static 'assets/images/users/avatar-1.jpg' %}" alt="user" class="rounded-circle">
-                </a>
-                <div class="dropdown-menu dropdown-menu-right profile-dropdown ">
-                    <!-- item-->
-                    <div class="dropdown-item noti-title">
-                        <h5>Welcome</h5>
-                    </div>
-                    {% if request.user.is_authenticated %}
-                    <a class="dropdown-item" href="#"><i class="mdi mdi-account-circle m-r-5 text-muted"></i>{{request.user.username}}</a>
-                    {% else %}
-                    <a class="dropdown-item" href="#"><i class="mdi mdi-wallet m-r-5 text-muted"></i> Login</a>
-                    {% endif %}
-                    <a class="dropdown-item" href="{% url 'custom_logout' %}"><i class="mdi mdi-logout m-r-5 text-muted"></i> Logout</a>
-                </div>
-            </li>
-
-        </ul>
-
-        <ul class="list-inline menu-left mb-0">
-            <li class="float-left">
-                <button class="button-menu-mobile open-left waves-light waves-effect">
-                    <i class="mdi mdi-menu"></i>
-                </button>
-            </li>                                
-        </ul>
-
-        <div class="clearfix"></div>
-
-    </nav>
+    </div>
+    <!-- End Right content here -->
 
 </div>

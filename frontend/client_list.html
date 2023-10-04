@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
@@ -5,6 +6,7 @@
     {% include 'base/links.html' %}
 </head>
 <body>
+    {% include 'base/nav.html' %}
     <h1><a href="{% url 'client_list' %}">Mijozlar ro'yxati</a>
         <a href="{% url 'home' %}" class="logo">
             <button class="btn btn-outline-success waves-effect waves-light">Bosh sahifa </button>
